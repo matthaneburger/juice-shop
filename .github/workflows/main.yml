@@ -18,7 +18,7 @@ jobs:
         node-version: '18'
 
     - name: Install dependencies
-      run: npm install
+      run: nnpm install --legacy-peer-deps
 
     - name: Compile the app
       run: npm run build
@@ -26,12 +26,12 @@ jobs:
     - name: Install Snyk
       run: npm install -g snyk
 
-    - name: Run Snyk Open Source Dependency Scan
+    - name: Run Snyk SCA
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       run: snyk test
 
-    - name: (Bonus) Run Snyk SAST Code Scan
+    - name: Run Snyk SAST
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       run: snyk code test
